@@ -1,4 +1,5 @@
  class Stack
+
     def initialize
       # create ivar to store stack here!
       @stack = []
@@ -16,27 +17,51 @@
 
     def peek
       # returns, but doesn't remove, the top element in the stack
-      p @stack[-1]
+      @stack[-1].dup
     end
+
+    def size
+        @stack.length
+    end
+
+    def empty?
+        @stack.empty?
+    end
+
+    def inspect
+        "#<Stack:#{self.object_id}>"
+    end
+
+    private
+    attr_reader :stack
   end
 
-  class Queue
-
+  class MyQueue
     def initialize
         @queue = []
     end
 
-    def enqueuq(el)
+    def enqueue(el)
         @queue << el
+        self
     end
 
     def dequeue
         @queue.shift
     end
 
-    def peek
-        @queue[0]
+    def show
+        @queue.dup
     end
+
+    def empty?
+        @queue.empty?
+    end
+
+    def peek
+        @queue[0].dup
+    end
+
   end
 
   class Map
@@ -48,13 +73,16 @@
     def set(key, value)
         if @map.none? {|ele| ele[0] == key}
             @map << [key, value]
+            return true
         else
             (0...@map.length).each do |i|
                 if @map[i][0] == key
                     @map[i][1] = value
+                    return true
                 end
             end
         end
+        false
     end
 
     def get(key)
@@ -80,6 +108,6 @@
     end
 
     def show
-        @map
+        @map.dup
     end
   end
