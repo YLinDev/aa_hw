@@ -1,4 +1,6 @@
+require 'byebug'
 class Board
+
   attr_accessor :cups
   attr_reader :name1, :name2
 
@@ -32,25 +34,39 @@ class Board
   end
 
   def make_move(start_pos, current_player_name)
-    if current_player_name == name1
-      store_idx = 13
-    else
-      store_idx = 6
-    end
     stones = cups[start_pos]
     cups[start_pos] = []
-    stones.each do |stone|
-      if start_pos+1 == store_idx
-        start_pos = (start_pos+2 % cups.length)
+    # if current_player_name == name1
+    #   store_idx = 13
+    # else
+    #   store_idx = 6
+    # end
+    #debugger
+    count = start_pos
+    until stones.empty?
+      count += 1
+      count = 0 if count > 13
+      if count == 6
+        cups[6] << stones.pop if current_player_name == @name1
+      elsif count == 13
+        cups[13] << stones.pop if current_player_name == @name2
       else
-        start_pos = (start_pos+1 % cups.length)
+        cups[count] << stones.pop
       end
-      cups[start_pos] << stone
     end
+    render
+    next_turn(count)
   end
 
   def next_turn(ending_cup_idx)
     # helper method to determine whether #make_move returns :switch, :prompt, or ending_cup_idx
+    if ending_cup_idx == 6 || ending_cup_idx == 13
+      return :prompt
+    elsif cups[ending_cup_idx].count == 1
+      return :switch
+    else
+      return ending_cup_idx
+    end
   end
 
   def render
@@ -68,7 +84,12 @@ class Board
   end
 
   def winner
-    return name1 if cups[0..5].all? {|ele| ele.empty?}
-    return name2 if cups[7..12].all? {|ele| ele.empty?}
+    player1_count = cups[6].count 
+    player2_count = cups[13].count
+    if player1_count == player2_count
+      :draw 
+    else
+      player1_count > player2_count ? @name1 : @name2
+    end
   end
 end
