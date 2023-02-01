@@ -19,17 +19,22 @@ class Simon
 
   def take_turn
     self.show_sequence
-    self.require_sequence
-    self.round_success_message
+    if self.require_sequence
+      return self.round_success_message
+    else
+      @game_over = true 
+    end
     @sequence_length += 1
   end
 
   def show_sequence
-    self.add_random_color
+    p self.add_random_color
   end
 
   def require_sequence
-
+    p "Please input the order of the colors"
+    answers = gets.chomp.split(' ')
+    answers == @seq
   end
 
   def add_random_color
@@ -37,11 +42,11 @@ class Simon
   end
 
   def round_success_message
-
+    p "You matched all colors, great job!"
   end
 
   def game_over_message
-
+    p "Game over, try again"
   end
 
   def reset_game
@@ -50,3 +55,5 @@ class Simon
     @seq = []
   end
 end
+
+Simon.new.play
