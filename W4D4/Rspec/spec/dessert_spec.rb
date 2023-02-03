@@ -8,7 +8,7 @@ Instructions: implement all of the pending specs (the `it` statements without bl
 
 describe Dessert do
   subject(:cookie) { Dessert.new('cookie', 10, 'chef') }
-  let(:chef) { double("chef") }
+  let(:chef) { double("Yong") }
 
   describe "#initialize" do
     it "sets a type" do
@@ -62,7 +62,7 @@ describe Dessert do
 
   describe "#serve" do
     it "contains the titleized version of the chef's name" do
-      allow(chef).to receive(:titleize).and_return("Chef chef the Great Baker")
+      allow(chef).to receive(:titleize).and_return("Yong the Great Baker")
       expect(cookie.serve).to eq("Chef has made 10 cookies!")
     end
   end

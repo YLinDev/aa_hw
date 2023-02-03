@@ -1,4 +1,5 @@
 require 'active_support/inflector'
+require 'chef'
 # The module above allows us to use the String#pluralize method that
 # will properly pluralize a string.
 #
