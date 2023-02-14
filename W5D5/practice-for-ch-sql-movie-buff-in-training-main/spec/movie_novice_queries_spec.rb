@@ -22,10 +22,10 @@ describe 'top_titles' do
 
 	it 'retrieves the correct information' do
 		expected_response = [
-			{id: nil, title: 'Shawshank Redemption, The'},
-			{id: nil, title: 'Godfather, The'},
-			{id: nil, title: 'Shichinin no samurai'},
-			{id: nil, title: 'Wo hu zang long'}
+			{id: 2, title: 'Shawshank Redemption, The'},
+			{id: 12, title: 'Godfather, The'},
+			{id: 241, title: 'Shichinin no samurai'},
+			{id: 331, title: 'Wo hu zang long'}
 		].map { |el| el.stringify_keys }
 
 		expect(subject).to contain_exactly(*expected_response)

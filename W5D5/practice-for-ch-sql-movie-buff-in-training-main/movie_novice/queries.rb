@@ -45,8 +45,8 @@ def star_wars
   # display the id, title, and year of each Star Wars movie in movies
   # hint: use 'select' and 'where'
   Movie
-    .select(:id, :title, :yr)
     .where('title LIKE \'%Star Wars%\'')
+    .select(:id, :title, :yr)
 end
 
 
