@@ -31,8 +31,9 @@ Elephant.prototype.play = function () {
     const ranTrick = this.tricks[Math.floor(Math.random()*this.tricks.length)]
     console.log(`${this.name} plays ${ranTrick}`)
 }
-e = new Elephant('Yong', 123)
-e.grow()
-e.addTrick("jump")
-console.log(e)
-e.play()
+// e = new Elephant('Yong', 123)
+// e.grow()
+// e.addTrick("jump")
+// e.addTrick("piano")
+// console.log(e)
+// e.play()
